@@ -5,4 +5,4 @@ Esses estudantes ir√£o desenvolver um sistema para gerenciar o acervo (bibliogr√
 
 These students will develop a system to manage a user's personal bibliographic collection. This system will allow for the registration of books (or other items) for a given user. The system will also enable the recording of loans to contacts previously registered in the system, as well as the logging of their return.
 
-![image](https://github.com/user-attachments/assets/006a175c-11ed-4289-83f8-1d8527ac533b)
+![image](https://github.com/user-attachments/assets/ba45263f-85b3-4bc4-8ca2-9e7f2557f7c8)
