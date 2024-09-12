@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+
+    <header class="navbar">
+        <h1>Acervo Pessoal</h1>
+        <div class="search-input">
+            <input type="text" placeholder="Pesquisar item...">
+        </div>
+        <a href="#"><img src="imagens/exit.svg" alt="logout"></a>
+    </header>
+
+    <div class="content">
+        <div class="links">
+            <nav>
+                <ul>
+                    <li><a href="cadastrar-item.html">Cadastrar item</a></li>
+                    <li><a href="registrar-emprestimo.html">Registrar empréstimo</a></li>
+                    <li><a href="registrar-devolucao.html">Registrar devolução</a></li>
+                    <li><a href="">Itens disponíveis</a></li>
+                    <li><a href="">Itens emprestados</a></li>
+                    <li><a href="adicionar-contato.html">Adicionar contato</a></li>
+                </ul>
+            </nav>
+        </div>
+        <main class="main">
+            <h1 class="title">Adicionar Contato</h1>
+            <span class="description">Para adicionar um contato da sua lista preencha os campos abaixo:</span>
+            <form action="post" class="data-form">
+                <label>
+                    Nome:
+                    <input type="text" placeholder="Digite o nome do contato">
+                </label>
+                <label>
+                    Telefone:
+                    <input type="text" placeholder="Digite o número de contato">
+                </label>
+                <label>
+                    Email
+                    <input type="text" placeholder="Digite o email do seu contato">
+                </label> 
+                <input type="submit">
+            </form>
+        </main>
+    </div>
+</body>
+</html>
