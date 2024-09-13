@@ -7,5 +7,12 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <h2>Cadastro</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Cadastrar</button>
+    </form>
+    <p>Já tem conta? <a href="{% url 'login' %}">Faça login</a></p>
 </body>
 </html>

@@ -14,7 +14,9 @@
         <div class="search-input">
             <input type="text" placeholder="Pesquisar item...">
         </div>
-        <a href="#"><img src="imagens/exit.svg" alt="logout"></a>
+        <a href="{% url 'logout' %}">
+            <img src="imagens/exit.svg" alt="logout">
+        </a>    
     </header>
 
     <div class="content">
@@ -22,11 +24,11 @@
             <nav>
                 <ul>
                     <li><a href="cadastrar-item.html">Cadastrar item</a></li>
-                    <li><a href="">Registrar empréstimo</a></li>
-                    <li><a href="">Registrar devolução</a></li>
+                    <li><a href="registrar-devolucao.html">Registrar empréstimo</a></li>
+                    <li><a href="registrar-devolucao.html">Registrar devolução</a></li>
                     <li><a href="">Itens disponíveis</a></li>
                     <li><a href="">Itens emprestados</a></li>
-                    <li><a href="">Adicionar contato</a></li>
+                    <li><a href="adicionar-contato.html">Adicionar contato</a></li>
                 </ul>
             </nav>
         </div>
