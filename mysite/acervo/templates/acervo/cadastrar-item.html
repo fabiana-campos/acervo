@@ -1,0 +1,28 @@
+{% extends 'acervo/base.html' %}
+
+{% block title %}Cadastrar Item{% endblock title %}
+
+{% block titulo %}Cadastrar Item{% endblock titulo %} 
+
+{% block conteudo %}
+    <span class="description">Para realizar o cadastro de algum item, preencha os campos abaixo:</span>
+    <form action="post" class="data-form">
+        <label>
+            Nome:
+            <input type="text" placeholder="Digite o nome do item:">
+        </label>
+        <label>
+            Autor:
+            <input type="text" placeholder="Digite o nome do autor:">
+        </label>
+        <label>
+            Ano de publicação:
+            <input type="date">
+        </label>
+        <label>
+            Foto da capa:
+            <input type="file">
+        </label>
+        <input type="submit">
+    </form>
+{% endblock conteudo %}

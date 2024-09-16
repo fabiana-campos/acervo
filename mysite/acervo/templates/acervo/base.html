@@ -1,10 +1,12 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %}</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{% static 'acervo/css/style.css' %}">
 </head>
 <body>
     <header class="navbar">
@@ -12,14 +14,14 @@
         <div class="search-input">
             <input type="text" placeholder="Pesquisar item...">
         </div>
-        <a href="#"><img src="imagens/exit.svg" alt="logout"></a>
+        <a href="{% url 'logout' %}"><img src="{% static 'acervo/img/exit.svg' %}" alt="logout"></a>
     </header>
 
     <div class="content">
         <div class="links">
             <nav>
                 <ul>
-                    <li><a href="cadastrar-item.html">Cadastrar item</a></li>
+                    <li><a href="{% url 'cadastrar-item' %}">Cadastrar item</a></li>
                     <li><a href="registrar-emprestimo.html">Registrar empréstimo</a></li>
                     <li><a href="registrar-devolucao.html">Registrar devolução</a></li>
                     <li><a href="">Itens disponíveis</a></li>
