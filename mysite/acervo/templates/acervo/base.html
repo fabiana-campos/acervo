@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{% block title %}{% endblock title %}</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-
     <header class="navbar">
         <h1>Acervo Pessoal</h1>
         <div class="search-input">
@@ -31,19 +29,8 @@
             </nav>
         </div>
         <main class="main">
-            <h1 class="title">Registrar Devolução</h1>
-            <span class="description">Para registrar a devolução de algum item, preencha os campos abaixo:</span>
-            <form action="post" class="data-form">
-                <label>
-                    Nome:
-                    <input type="text" placeholder="Digite o nome do item:">
-                </label>
-                <label>
-                    Data da devolução
-                    <input type="date">
-                </label> 
-                <input type="submit">
-            </form>
+            <h1 class="title">{% block titulo %}{% endblock titulo %}</h1>
+            {% block conteudo %}{% endblock conteudo %}
         </main>
     </div>
 </body>
