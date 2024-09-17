@@ -1,0 +1,23 @@
+{% extends 'acervo/base.html' %}
+
+{% block title %}Registrar Devolução{% endblock title %}
+
+{% block titulo %}Registrar Devolução{% endblock titulo %} 
+
+{% block conteudo %}
+    <span class="description">Para registrar a devolução de algum item, preencha os campos abaixo:</span>
+    <form action="" method="post" class="data-form">
+        {% csrf_token %}
+        <label>
+            Selecione um emprestimo:
+            {% csrf_token %}
+            <select name="emprestimo" id="">
+                {% for emprestimo in emprestimos %}
+                    <option value="{{ emprestimo.id }}">{{ emprestimo.item.titulo }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>
+        <input type="submit">
+    </form>
+{% endblock conteudo %}

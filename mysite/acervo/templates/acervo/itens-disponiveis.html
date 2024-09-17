@@ -1,0 +1,18 @@
+{% extends 'acervo/base.html' %}
+
+{% block title %}Itens Disponiveis{% endblock title %}
+
+{% block titulo %}Itens Disponiveis{% endblock titulo %} 
+
+{% block conteudo %}
+    <span class="description">Itens do seu acervo que estão disponiveis</span>
+    {% for item in itens %}
+        <div>
+            {{ item.titulo }}
+            {{ item.autor }}
+            <img src="{{ item.imagem.url }}" alt="">
+            {{ item.ano }}
+            {{ item.status }}
+        </div>
+    {% endfor %}
+{% endblock conteudo %}

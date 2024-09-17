@@ -22,11 +22,11 @@
             <nav>
                 <ul>
                     <li><a href="{% url 'cadastrar-item' %}">Cadastrar item</a></li>
-                    <li><a href="registrar-emprestimo.html">Registrar empréstimo</a></li>
-                    <li><a href="registrar-devolucao.html">Registrar devolução</a></li>
-                    <li><a href="">Itens disponíveis</a></li>
-                    <li><a href="">Itens emprestados</a></li>
-                    <li><a href="adicionar-contato.html">Adicionar contato</a></li>
+                    <li><a href="{% url 'registrar-emprestimo' %}">Registrar empréstimo</a></li>
+                    <li><a href="{% url 'registrar-devolucao' %}">Registrar devolução</a></li>
+                    <li><a href="{% url 'itens-disponiveis' %}">Itens disponíveis</a></li>
+                    <li><a href="{% url 'itens-emprestados' %}">Itens emprestados</a></li>
+                    <li><a href="{% url 'adicionar-contato' %}">Adicionar contato</a></li>
                 </ul>
             </nav>
         </div>

@@ -4,6 +4,10 @@ from django.views import View
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
+from .models import Item, Contato, Emprestimo
+from django.contrib import messages
+from datetime import date
 
 class LoginView(View):
     def get(self, request, *args, **kwargs):
@@ -62,11 +66,142 @@ class LogoutView(View):
         return redirect(reverse('login'))
 
 class CadastrarItemView(LoginRequiredMixin, View):
-    # Redefine o método get para renderizar o template
     def get(self, request, *args, **kwargs):
         return render(request, 'acervo/cadastrar-item.html')
-
-    # Adiciona uma classe de erro se o usuário não estiver autenticado
     def handle_no_permission(self):
-        # Redireciona para a página de login, ou qualquer outra página de sua escolha
         return redirect('login')
+    
+    def post(self, request, *args, **kwargs):
+        titulo = request.POST.get('titulo')
+        autor = request.POST.get('autor')
+        ano = request.POST.get('ano')
+        imagem = request.FILES.get('imagem')
+
+        # Validação e criação do item
+        if titulo and autor and ano:
+            item = Item.objects.create(
+                titulo=titulo,
+                autor=autor,
+                ano=ano,
+                imagem=imagem
+            )
+            return redirect(reverse('itens-disponiveis'))
+        else:
+            messages.error(request, 'Por favor, preencha todos os campos obrigatórios.')
+            return render(request, 'acervo/cadastrar-item.html')
+    
+class AdicionarContatoView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'acervo/adicionar-contato.html')
+
+    def post(self, request, *args, **kwargs):
+        nome = request.POST.get('nome')
+        email = request.POST.get('email')
+
+        # Validação e criação do Contato
+        if nome and email:
+            contato = Contato.objects.create(
+                nome = nome,
+                email = email
+            )
+            return redirect(reverse('registrar-emprestimo'))
+
+        return render(request, 'acervo/adicionar-contato.html')
+
+    def handle_no_permission(self):
+        return redirect('login')
+    
+class EmprestimoView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        itens = Item.objects.filter(status='disponivel')
+        contatos = Contato.objects.all()
+
+        contexto = {'itens': itens, 'contatos': contatos}
+
+        return render(request, 'acervo/registrar-emprestimo.html', contexto)
+
+    def post(self, request, *args, **kwargs):
+        item_id = request.POST.get('item')
+        contato_id = request.POST.get('contato')
+        data_emprestimo = request.POST.get('data-emprestimo')
+
+        if item_id and contato_id:
+            item = Item.objects.get(id=item_id)
+            contato = Contato.objects.get(id=contato_id)
+
+            Emprestimo.objects.create(
+                item = item,
+                contato = contato, 
+                data_emprestimo = data_emprestimo,
+            )
+
+            item.status = 'emprestado'
+            item.save()
+
+            return redirect(reverse('itens-emprestados'))
+
+        return render(request, 'acervo/registrar-emprestimo.html')
+
+    def handle_no_permission(self):
+        return redirect('login')
+    
+class DevolucaoView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        # Filtra apenas os empréstimos que não foram devolvidos
+        emprestimos_nao_devolvidos = Emprestimo.objects.filter(devolvido=False)
+
+        contexto = {"emprestimos": emprestimos_nao_devolvidos}
+
+        return render(request, 'acervo/registrar-devolucao.html', contexto)
+    
+    def post(self, request, *args, **kwargs):
+        emprestimo_id = request.POST.get('emprestimo')
+
+        if emprestimo_id:
+            emprestimo = Emprestimo.objects.get(id=emprestimo_id)
+
+            # Atualiza a data de devolução e o status
+            emprestimo.data_devolucao = date.today()
+            emprestimo.devolvido = True
+
+            # Atualiza o status do item para "disponível"
+            emprestimo.item.status = 'disponivel'
+            emprestimo.item.save()
+
+            emprestimo.save()  # Salva o objeto Emprestimo com as alterações
+
+            # Redireciona para a página de itens disponíveis após a devolução
+            return redirect(reverse('itens-disponiveis'))
+
+        # Em caso de erro, repete o método GET
+        emprestimos_nao_devolvidos = Emprestimo.objects.filter(devolvido=False)
+        contexto = {"emprestimos": emprestimos_nao_devolvidos}
+        return render(request, 'acervo/registrar-devolucao.html', contexto)
+
+    def handle_no_permission(self):
+        return redirect('login')
+
+class ItensDisponiveisView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        itens = Item.objects.filter(status='disponivel')
+        
+        # Passar os itens para o template
+        contexto = {'itens': itens}
+
+        return render(request, 'acervo/itens-disponiveis.html', contexto)
+    
+    def handle_no_permission(self):
+        return redirect('login')
+
+class ItensEmprestadosView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        itens = Item.objects.filter(status='emprestado')
+        
+        # Passar os itens para o template
+        contexto = {'itens': itens}
+
+        return render(request, 'acervo/itens-emprestados.html', contexto)
+    
+    def handle_no_permission(self):
+        return redirect('login')
+    
