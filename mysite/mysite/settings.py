@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-4)&0w!bt6__7-8lutx9og44^4lb!qrf#)h8t7k@+4aj9(x$hmq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'fabianacampos1.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -126,3 +126,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'cadastrar-item'
 LOGOUT_REDIRECT_URL = 'login'
+
+MEDIA_ROOT = BASE_DIR / 'mysite/media'
+MEDIA_URL = '/media/'

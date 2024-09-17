@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'acervo/css/style.css' %}">
+</head>
+<body>
+    <header class="navbar">
+        <h1>Acervo Pessoal</h1>
+        <div class="search-input">
+            <input type="text" placeholder="Pesquisar item...">
+        </div>
+        <a href="{% url 'logout' %}"><img src="{% static 'acervo/img/exit.svg' %}" alt="logout"></a>
+    </header>
+
+    <div class="content">
+        <div class="links">
+            <nav>
+                <ul>
+                    <li><a href="{% url 'cadastrar-item' %}">Cadastrar item</a></li>
+                    <li><a href="{% url 'registrar-emprestimo' %}">Registrar empréstimo</a></li>
+                    <li><a href="{% url 'registrar-devolucao' %}">Registrar devolução</a></li>
+                    <li><a href="{% url 'itens-disponiveis' %}">Itens disponíveis</a></li>
+                    <li><a href="{% url 'itens-emprestados' %}">Itens emprestados</a></li>
+                    <li><a href="{% url 'adicionar-contato' %}">Adicionar contato</a></li>
+                </ul>
+            </nav>
+        </div>
+        <main class="main">
+            <h1 class="title">{% block titulo %}{% endblock titulo %}</h1>
+            {% block conteudo %}{% endblock conteudo %}
+        </main>
+    </div>
+</body>
+</html>

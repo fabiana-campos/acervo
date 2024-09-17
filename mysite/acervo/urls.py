@@ -1,16 +1,14 @@
 from django.urls import path
 from . import views
-from . import auth_views
 
 urlpatterns = [
-    path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
-    path('register/', views.register, name='register'),
-    path('itens/', views.listar_itens, name='listar_itens'),
-    path('cadastrar-item/', views.cadastrar_item, name='cadastrar_item'),
-    path('contatos/', views.listar_contatos, name='listar_contatos'),
-    path('cadastrar-contato/', views.cadastrar_contato, name='cadastrar_contato'),
-    path('emprestimos/', views.gerenciar_emprestimos, name='gerenciar_emprestimos'),
-    path('registrar-emprestimo/', views.registrar_emprestimo, name='registrar_emprestimo'),
-    path('marcar-devolvido/<int:emprestimo_id>/', views.marcar_devolvido, name='marcar_devolvido'),
-]
+    path('', views.LoginView.as_view(), name="login"),
+    path('cadastro/', views.CadastroView.as_view(), name="cadastro"),
+    path('logout/', views.LogoutView.as_view(), name="logout"),
+    path('cadastrar-item/', views.CadastrarItemView.as_view(), name="cadastrar-item"),
+    path('adicionar-contato/', views.AdicionarContatoView.as_view(), name="adicionar-contato"),
+    path('registrar-emprestimo/', views.EmprestimoView.as_view(), name="registrar-emprestimo"),
+    path('registrar-devolucao/', views.DevolucaoView.as_view(), name="registrar-devolucao"),
+    path('itens-disponiveis/', views.ItensDisponiveisView.as_view(), name="itens-disponiveis"),
+    path('itens-emprestados/', views.ItensEmprestadosView.as_view(), name="itens-emprestados"),
+] 

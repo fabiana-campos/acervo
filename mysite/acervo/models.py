@@ -1,19 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import User
-
-class Usuario(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)  # Relacionado com o modelo User do Django
-    nome = models.CharField(max_length=150)
-    email = models.EmailField()
-    senha = models.CharField(max_length=50)
-
-    def __str__(self):
-        return self.nome
 
 class Contato(models.Model):
     nome = models.CharField(max_length=150)
     email = models.EmailField()
-    telefone = models.CharField(max_length=15)
 
     def __str__(self):
         return self.nome

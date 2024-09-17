@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'acervo/css/style.css' %}"/>
+</head>
+<body>
+    <h1>Cadastro</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="email" placeholder="Digite o seu email" name="email" required>
+        <input type="text" placeholder="Digite o seu username" name="username" required>
+        <input type="password" placeholder="Digite a sua senha..." name="password" required>
+        <input type="submit">
+        {% if error %}
+            <div class="error-message" style="color: red;">
+                {{ error }}
+            </div>
+        {% endif %}
+    </form>
+    <a href="{% url 'login' %}">Já possui uma conta? Login</a>
+</body>
+</html>
