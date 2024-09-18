@@ -11,9 +11,20 @@
     padding: 15px 20px;
 }
 
+
+.container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    min-height: 10vh;
+}
+
 .search-input {
     background-color: #e5e5e5;
     border-radius: 15px;
+    margin-bottom: 30px;
+    width: fit-content;
 }
 
 .search-input input {
@@ -75,4 +86,48 @@
     margin: 50px 0;
     border-radius: 15px;
     text-align: left;
+}
+
+.item-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 200px; /* ajuste o tamanho conforme necessário */
+    text-align: center;
+    overflow: hidden;
+}
+
+.card-image {
+    width: 100%;
+    height: auto; /* ajusta a altura automaticamente */
+    object-fit: cover; /* mantém a proporção da imagem */
+}
+
+.card-content {
+    padding: 10px;
+}
+
+.card-title {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.card-author, .card-year{
+    font-size: 14px;
+    color: #555;
+}
+
+.description {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 50px; 
+    font-size: 18px;
+    text-align: center; 
 }

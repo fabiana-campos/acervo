@@ -10,11 +10,9 @@
 </head>
 <body>
     <h1>Login</h1> 
-    {% if user.is_authenticated %}
-        <span>Hello, {{ user.username }}!</span>
-    {% else %}
-        <span>Hello, visitor!</span>
-    {% endif %}
+
+    <span>Para utilizar a aplicação Acervo realize o login!</span>
+
     <form action="" method="POST">
         {% csrf_token %}
         <div>

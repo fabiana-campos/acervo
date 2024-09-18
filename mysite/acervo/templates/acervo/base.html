@@ -11,9 +11,6 @@
 <body>
     <header class="navbar">
         <h1>Acervo Pessoal</h1>
-        <div class="search-input">
-            <input type="text" placeholder="Pesquisar item...">
-        </div>
         <a href="{% url 'logout' %}"><img src="{% static 'acervo/img/exit.svg' %}" alt="logout"></a>
     </header>
 
@@ -32,7 +29,7 @@
         </div>
         <main class="main">
             <h1 class="title">{% block titulo %}{% endblock titulo %}</h1>
-            {% block conteudo %}{% endblock conteudo %}
+            {% block conteudo %} {% endblock conteudo %}
         </main>
     </div>
 </body>

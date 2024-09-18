@@ -8,6 +8,7 @@ from django.shortcuts import redirect
 from .models import Item, Contato, Emprestimo
 from django.contrib import messages
 from datetime import date
+from django.db.models import Q
 
 class LoginView(View):
     def get(self, request, *args, **kwargs):
@@ -183,7 +184,11 @@ class DevolucaoView(LoginRequiredMixin, View):
 
 class ItensDisponiveisView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
-        itens = Item.objects.filter(status='disponivel')
+        q = ''
+        if request.GET.get('q') != None:
+            q = request.GET.get('q')
+
+        itens = Item.objects.filter(Q(titulo__icontains=q)).filter( status='disponivel')
         
         # Passar os itens para o template
         contexto = {'itens': itens}
@@ -195,7 +200,11 @@ class ItensDisponiveisView(LoginRequiredMixin, View):
 
 class ItensEmprestadosView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
-        itens = Item.objects.filter(status='emprestado')
+        q = ''
+        if request.GET.get('q') != None:
+            q = request.GET.get('q')
+
+        itens = Item.objects.filter(Q(titulo__icontains=q)).filter( status='emprestado')
         
         # Passar os itens para o template
         contexto = {'itens': itens}

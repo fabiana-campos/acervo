@@ -1,18 +1,26 @@
 {% extends 'acervo/base.html' %}
 
-{% block title %}Itens Disponiveis{% endblock title %}
+{% block title %}Itens Disponíveis{% endblock title %}
 
-{% block titulo %}Itens Disponiveis{% endblock titulo %} 
+{% block titulo %}Itens Disponíveis{% endblock titulo %} 
 
 {% block conteudo %}
-    <span class="description">Itens do seu acervo que estão disponiveis</span>
-    {% for item in itens %}
-        <div>
-            {{ item.titulo }}
-            {{ item.autor }}
-            <img src="{{ item.imagem.url }}" alt="">
-            {{ item.ano }}
-            {{ item.status }}
+    <div class="container">
+        <span class="description">Itens do seu acervo que estão disponíveis</span>
+        <form class="search-input" method="get">
+            <input type="text" placeholder="Pesquisar título..." name="q">
+        </form>
+        <div class="item-list">
+            {% for item in itens %}
+                <div class="card">
+                    <img src="{{ item.imagem.url }}" alt="" class="card-image">
+                    <div class="card-content">
+                        <h2 class="card-title">{{ item.titulo }}</h2>
+                        <p class="card-author">{{ item.autor }}</p>
+                        <p class="card-year">{{ item.ano }}</p>
+                    </div>
+                </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+    </div>
 {% endblock conteudo %}

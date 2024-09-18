@@ -20,6 +20,7 @@ class Item(models.Model):
         ],
         default='disponivel'
     )
+    
 
     def __str__(self):
         return self.titulo
