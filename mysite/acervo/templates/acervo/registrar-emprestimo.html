@@ -1,11 +1,11 @@
 {% extends 'acervo/base.html' %}
 
-{% block title %}Registrar Emprestimo{% endblock title %}
+{% block title %}Registrar Empréstimo{% endblock title %}
 
-{% block titulo %}Registrar Emprestimo{% endblock titulo %} 
+{% block titulo %}Registrar Empréstimo{% endblock titulo %} 
 
 {% block conteudo %}
-    <span class="description">Para registrar o emprestimo de algum item, preencha os campos abaixo:</span>
+    <span class="description">Para registrar o empréstimo de algum item, preencha os campos abaixo:</span>
     <form action="" method="post" class="data-form">
         {% csrf_token %}
         <select name="item" id="">
@@ -22,7 +22,7 @@
             </select>
         </label>
         <label>
-            Data do emprestimo:
+            Data do empréstimo:
             <input type="date" name="data-emprestimo">
         </label>
         <input type="submit">
