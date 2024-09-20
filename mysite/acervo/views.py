@@ -27,7 +27,7 @@ class LoginView(View):
             # Se a autenticação for bem-sucedida, realiza o login do usuário
             login(request, user)
             # Redireciona para a página inicial ou para a página de sucesso
-            return redirect(reverse('cadastrar-item'))  # Ajuste 'home' para a URL desejada após o login
+            return redirect(reverse('cadastrar-item'))  
         else:
             # Se a autenticação falhar, renderiza o template com uma mensagem de erro
             return render(request, 'acervo/login.html', {'error': 'Nome de usuário ou senha incorretos.'})
